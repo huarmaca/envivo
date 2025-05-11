@@ -1,1 +1,614 @@
-<h1>Hola amigos</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yarlin Producciones - Radio Online</title>
+  
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Iconos -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  
+  <style>
+    :root {
+      --primary: #6200ea;
+      --primary-light: #9d46ff;
+      --primary-dark: #0a00b6;
+      --dark: #121212;
+      --light: #f5f5f5;
+      --gray: #757575;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background-color: var(--light);
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Header */
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      top: 0;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 2rem;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .menu-toggle {
+      display: none;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 8rem 0 5rem;
+      background: linear-gradient(rgba(10, 0, 182, 0.8), rgba(98, 0, 234, 0.6));
+      color: white;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Player Section */
+    .player-section {
+      padding: 3rem 0;
+    }
+    
+    .player-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    /* Music Player */
+    .music-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 10px;
+      color: white;
+      padding: 2rem;
+    }
+    
+    .track-info {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .track-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .track-artist {
+      opacity: 0.9;
+      font-size: 0.9rem;
+    }
+    
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .control-button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+    }
+    
+    .play-button {
+      width: 60px;
+      height: 60px;
+      background: white;
+      color: var(--primary);
+    }
+    
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.3);
+      outline: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+    
+    /* Programs Section */
+    .section {
+      padding: 4rem 0;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .program-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+    }
+    
+    .program-time {
+      display: inline-block;
+      background: var(--primary-light);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .program-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .program-host {
+      color: var(--gray);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    /* Contact Section */
+    .contact-form {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 3rem 0 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-links h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        color: var(--dark);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+      }
+      
+      .nav-links li {
+        margin: 0.8rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo-text">Yarlin Producciones</div>
+        
+        <button class="menu-toggle" id="menu-toggle">
+          <i data-feather="menu"></i>
+        </button>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#radio">Radio</a></li>
+          <li><a href="#programas">Programas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <h1>Yarlin Producciones</h1>
+      <p>Transmitiendo la mejor música las 24 horas del día. Sintoniza ahora y sé parte de nuestra comunidad de oyentes.</p>
+      <a href="#radio" class="btn">Escuchar ahora</a>
+    </div>
+  </section>
+  
+  <!-- Player Section -->
+  <section class="player-section" id="radio">
+    <div class="container">
+      <div class="player-card">
+        <div class="music-player">
+          <div class="track-info">
+            <div class="track-name">Radio en Vivo</div>
+            <div class="track-artist">Yarlin Producciones</div>
+          </div>
+          
+          <div class="player-controls">
+            <button class="control-button" id="previous-button">
+              <i data-feather="skip-back"></i>
+            </button>
+            <button class="control-button play-button" id="play-button">
+              <i data-feather="play" id="play-icon"></i>
+            </button>
+            <button class="control-button" id="next-button">
+              <i data-feather="skip-forward"></i>
+            </button>
+          </div>
+          
+          <div class="volume-control">
+            <button class="control-button" id="mute-button">
+              <i data-feather="volume-2" id="volume-icon"></i>
+            </button>
+            <input type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider" id="volume-slider">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Programs Section -->
+  <section class="section" id="programas">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nuestros Programas</h2>
+        <p>Descubre la variedad de programas que tenemos para ti</p>
+      </div>
+      
+      <div class="program-grid">
+        <div class="program-card">
+          <span class="program-time">Lunes a Viernes • 7:00 - 10:00</span>
+          <h3 class="program-title">Mañanas con Yarlin</h3>
+          <p class="program-host">Con Mario Sánchez</p>
+          <p>Comienza tu día con la mejor música y las noticias más relevantes para despertar con energía.</p>
+        </div>
+        
+        <div class="program-card">
+          <span class="program-time">Lunes a Viernes • 12:00 - 15:00</span>
+          <h3 class="program-title">Ritmo Latino</h3>
+          <p class="program-host">Con Lucia Mendoza</p>
+          <p>Tres horas de los mejores ritmos latinos. Salsa, merengue, bachata y reggaetón para animar tu mediodía.</p>
+        </div>
+        
+        <div class="program-card">
+          <span class="program-time">Lunes a Viernes • 18:00 - 20:00</span>
+          <h3 class="program-title">Atardecer Musical</h3>
+          <p class="program-host">Con Roberto Torres</p>
+          <p>Un espacio de música relajante para acompañar el final de tu día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="section-header">
+        <h2>Contacto</h2>
+        <p>Envíanos tu mensaje o solicitud</p>
+      </div>
+      
+      <div class="contact-form">
+        <form id="contact-form">
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="Nombre completo" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" placeholder="Correo electrónico" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="subject" placeholder="Asunto">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="message" placeholder="Mensaje" required></textarea>
+          </div>
+          <button type="submit" class="btn">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-links">
+          <h3>Yarlin Producciones</h3>
+          <p>Transmitiendo la mejor música desde 2015.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Enlaces</h3>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#radio">Radio</a></li>
+            <li><a href="#programas">Programas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Contacto</h3>
+          <ul>
+            <li>Email: info@yarlinproducciones.com</li>
+            <li>Teléfono: +1 234 567 890</li>
+            <li>Dirección: Av. Principal #123</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 Yarlin Producciones. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Inicializar iconos
+    feather.replace();
+    
+    // Toggle para el menú móvil
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+    
+    // Funcionalidad del reproductor de audio
+    const playButton = document.getElementById('play-button');
+    const playIcon = document.getElementById('play-icon');
+    const volumeSlider = document.getElementById('volume-slider');
+    const muteButton = document.getElementById('mute-button');
+    const volumeIcon = document.getElementById('volume-icon');
+    
+    let isPlaying = false;
+    let isMuted = false;
+    let volume = volumeSlider.value;
+    
+    // Simulación de reproductor (en un sitio real, aquí iría el código para la transmisión de audio)
+    playButton.addEventListener('click', function() {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        playIcon.setAttribute('data-feather', 'pause');
+        // Aquí iría el código para iniciar la reproducción
+        console.log('Reproduciendo...');
+      } else {
+        playIcon.setAttribute('data-feather', 'play');
+        // Aquí iría el código para pausar la reproducción
+        console.log('Pausado');
+      }
+      feather.replace();
+    });
+    
+    volumeSlider.addEventListener('input', function() {
+      volume = this.value;
+      // Aquí iría el código para ajustar el volumen
+      console.log('Volumen:', volume);
+      
+      if (parseFloat(volume) === 0) {
+        volumeIcon.setAttribute('data-feather', 'volume-x');
+        isMuted = true;
+      } else {
+        volumeIcon.setAttribute('data-feather', 'volume-2');
+        isMuted = false;
+      }
+      feather.replace();
+    });
+    
+    muteButton.addEventListener('click', function() {
+      isMuted = !isMuted;
+      if (isMuted) {
+        volumeIcon.setAttribute('data-feather', 'volume-x');
+        // Guardar volumen actual y establecer a 0
+        volumeSlider.setAttribute('data-volume', volume);
+        volumeSlider.value = 0;
+        // Aquí iría el código para silenciar
+        console.log('Silenciado');
+      } else {
+        volumeIcon.setAttribute('data-feather', 'volume-2');
+        // Restaurar volumen guardado
+        volume = volumeSlider.getAttribute('data-volume') || 0.8;
+        volumeSlider.value = volume;
+        // Aquí iría el código para restaurar volumen
+        console.log('Volumen restaurado:', volume);
+      }
+      feather.replace();
+    });
+    
+    // Formulario de contacto
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('¡Gracias por tu mensaje! Te responderemos pronto.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
