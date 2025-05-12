@@ -532,6 +532,11 @@
     // Inicializar iconos
     feather.replace();
     
+    // Crear elemento de audio para el streaming
+    const audioPlayer = new Audio();
+    audioPlayer.src = "https://stream.zeno.fm/ff6d94pmowruv";
+    audioPlayer.preload = "none";
+    
     // Toggle para el menú móvil
     document.getElementById('menu-toggle').addEventListener('click', function() {
       document.getElementById('nav-links').classList.toggle('active');
@@ -548,25 +553,54 @@
     let isMuted = false;
     let volume = volumeSlider.value;
     
-    // Simulación de reproductor (en un sitio real, aquí iría el código para la transmisión de audio)
+    // Manejo de errores de audio
+    audioPlayer.addEventListener('error', function(e) {
+      console.error('Error de reproducción:', e);
+      alert('Lo sentimos, hubo un problema al reproducir el streaming. Por favor, intente más tarde.');
+      isPlaying = false;
+      playIcon.setAttribute('data-feather', 'play');
+      feather.replace();
+      
+      // Detener visualizador
+      clearInterval(visualizerInterval);
+      visualizerBars.forEach(bar => {
+        bar.style.height = '20px';
+      });
+    });
+    
+    // Implementación real del reproductor
     playButton.addEventListener('click', function() {
       isPlaying = !isPlaying;
+      
       if (isPlaying) {
+        // Intenta reproducir el streaming
         playIcon.setAttribute('data-feather', 'pause');
-        // Aquí iría el código para iniciar la reproducción
-        console.log('Reproduciendo...');
+        const playPromise = audioPlayer.play();
+        
+        // Manejo moderno de promesas para reproducción de audio
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            console.log('Reproducción iniciada con éxito');
+          })
+          .catch(error => {
+            console.error('Error al iniciar reproducción:', error);
+            isPlaying = false;
+            playIcon.setAttribute('data-feather', 'play');
+          });
+        }
       } else {
+        // Pausar reproducción
+        audioPlayer.pause();
         playIcon.setAttribute('data-feather', 'play');
-        // Aquí iría el código para pausar la reproducción
-        console.log('Pausado');
       }
+      
       feather.replace();
     });
     
+    // Control de volumen
     volumeSlider.addEventListener('input', function() {
       volume = this.value;
-      // Aquí iría el código para ajustar el volumen
-      console.log('Volumen:', volume);
+      audioPlayer.volume = volume;
       
       if (parseFloat(volume) === 0) {
         volumeIcon.setAttribute('data-feather', 'volume-x');
@@ -578,28 +612,29 @@
       feather.replace();
     });
     
+    // Botón de silencio
     muteButton.addEventListener('click', function() {
       isMuted = !isMuted;
+      
       if (isMuted) {
         volumeIcon.setAttribute('data-feather', 'volume-x');
         // Guardar volumen actual y establecer a 0
         volumeSlider.setAttribute('data-volume', volume);
         volumeSlider.value = 0;
-        // Aquí iría el código para silenciar
-        console.log('Silenciado');
+        audioPlayer.volume = 0;
       } else {
         volumeIcon.setAttribute('data-feather', 'volume-2');
         // Restaurar volumen guardado
         volume = volumeSlider.getAttribute('data-volume') || 0.8;
         volumeSlider.value = volume;
-        // Aquí iría el código para restaurar volumen
-        console.log('Volumen restaurado:', volume);
+        audioPlayer.volume = volume;
       }
       feather.replace();
     });
     
     // Animar visualizador (simulado)
     const visualizerBars = document.querySelectorAll('.visualizer-bar');
+    let visualizerInterval;
     
     function animateVisualizer() {
       visualizerBars.forEach(bar => {
@@ -608,7 +643,7 @@
       });
     }
     
-    // Iniciar animación cuando se reproduce
+    // Iniciar/detener animación cuando se reproduce/pausa
     playButton.addEventListener('click', function() {
       if (isPlaying) {
         visualizerInterval = setInterval(animateVisualizer, 100);
