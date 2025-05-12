@@ -6,7 +6,7 @@
   <title>Yarlin Producciones - Radio Online</title>
   
   <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   
   <!-- Iconos -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
@@ -19,6 +19,7 @@
       --dark: #121212;
       --light: #f5f5f5;
       --gray: #757575;
+      --gradient: linear-gradient(135deg, #6200ea 0%, #bb86fc 100%);
     }
     
     * {
@@ -28,64 +29,52 @@
     }
     
     body {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--dark);
-      background-color: var(--light);
+      font-family: 'Raleway', sans-serif;
+      color: var(--light);
+      background-color: var(--dark);
       line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
     }
     
     h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
       font-weight: 700;
       margin-bottom: 1rem;
     }
     
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    
-    .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .btn:hover {
-      background: var(--primary-dark);
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
     
     /* Header */
     header {
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       position: fixed;
       width: 100%;
       z-index: 1000;
-      top: 0;
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
+      padding: 1rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
     }
     
     .logo-text {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
       font-size: 1.5rem;
-      color: var(--primary);
+      color: white;
+      text-decoration: none;
     }
     
     .nav-links {
@@ -99,51 +88,111 @@
     
     .nav-links a {
       text-decoration: none;
-      color: var(--dark);
+      color: rgba(255, 255, 255, 0.8);
       font-weight: 600;
       transition: color 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
     }
     
     .nav-links a:hover {
-      color: var(--primary);
+      color: var(--primary-light);
     }
     
     .menu-toggle {
       display: none;
-    }
-    
-    /* Hero Section */
-    .hero {
-      padding: 8rem 0 5rem;
-      background: linear-gradient(rgba(10, 0, 182, 0.8), rgba(98, 0, 234, 0.6));
+      background: transparent;
+      border: none;
       color: white;
-      text-align: center;
+      cursor: pointer;
     }
     
-    .hero h1 {
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 1.5rem;
-    }
-    
-    .hero p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    /* Player Section */
+    /* Player Section - Fullscreen */
     .player-section {
-      padding: 3rem 0;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      background: var(--dark);
+      position: relative;
+    }
+    
+    .background-visual {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: url('/api/placeholder/1400/800') center/cover no-repeat;
+      filter: brightness(0.3) contrast(1.2);
+    }
+    
+    .visualizer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    
+    .visualizer-bar {
+      width: 8px;
+      height: 20px;
+      background: var(--primary-light);
+      border-radius: 4px 4px 0 0;
+      animation: pulsate 1.5s ease-in-out infinite;
+      opacity: 0.8;
+    }
+    
+    @keyframes pulsate {
+      0%, 100% { height: 20px; }
+      50% { height: 120px; }
+    }
+    
+    .visualizer-bar:nth-child(1) { animation-delay: 0.2s; }
+    .visualizer-bar:nth-child(2) { animation-delay: 0.8s; }
+    .visualizer-bar:nth-child(3) { animation-delay: 0.4s; }
+    .visualizer-bar:nth-child(4) { animation-delay: 1s; }
+    .visualizer-bar:nth-child(5) { animation-delay: 0.6s; }
+    .visualizer-bar:nth-child(6) { animation-delay: 0.9s; }
+    .visualizer-bar:nth-child(7) { animation-delay: 0.3s; }
+    .visualizer-bar:nth-child(8) { animation-delay: 0.7s; }
+    .visualizer-bar:nth-child(9) { animation-delay: 0.5s; }
+    .visualizer-bar:nth-child(10) { animation-delay: 0.1s; }
+    
+    .overlay-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(98, 0, 234, 0.2) 0%, rgba(18, 18, 18, 0.9) 80%);
+      z-index: 2;
+    }
+    
+    .player-content {
+      position: relative;
+      z-index: 3;
+      max-width: 1200px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
     
     .player-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
+      width: 100%;
       text-align: center;
     }
     
@@ -152,53 +201,107 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      border-radius: 10px;
+      width: 100%;
       color: white;
       padding: 2rem;
     }
     
+    .station-logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: var(--gradient);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(157, 70, 255, 0.4);
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    .inner-logo {
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--primary-light);
+      text-shadow: 0 0 10px rgba(157, 70, 255, 0.8);
+    }
+    
     .track-info {
-      margin-bottom: 1.5rem;
+      margin-bottom: 3rem;
       text-align: center;
     }
     
     .track-name {
       font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 0.25rem;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(157, 70, 255, 0.5);
     }
     
     .track-artist {
-      opacity: 0.9;
-      font-size: 0.9rem;
+      opacity: 0.8;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1rem;
+    }
+    
+    .track-description {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.6);
     }
     
     .player-controls {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 2rem;
+      margin-bottom: 3rem;
     }
     
     .control-button {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       border: none;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .control-button:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
     
     .play-button {
-      width: 60px;
-      height: 60px;
-      background: white;
-      color: var(--primary);
+      width: 80px;
+      height: 80px;
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 10px 20px rgba(157, 70, 255, 0.4);
+    }
+    
+    .play-button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     }
     
     .volume-control {
@@ -206,7 +309,7 @@
       align-items: center;
       gap: 1rem;
       width: 100%;
-      max-width: 300px;
+      max-width: 400px;
     }
     
     input[type="range"] {
@@ -214,7 +317,7 @@
       width: 100%;
       height: 6px;
       border-radius: 3px;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
       outline: none;
     }
     
@@ -223,131 +326,61 @@
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: white;
-      cursor: pointer;
-    }
-    
-    /* Programs Section */
-    .section {
-      padding: 4rem 0;
-    }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    
-    .program-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .program-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem;
-    }
-    
-    .program-time {
-      display: inline-block;
       background: var(--primary-light);
-      color: white;
-      padding: 0.3rem 0.8rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(157, 70, 255, 0.8);
+    }
+    
+    .now-playing {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+    }
+    
+    .now-playing span {
+      color: var(--primary-light);
       font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    
-    .program-title {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .program-host {
-      color: var(--gray);
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-    
-    /* Contact Section */
-    .contact-form {
-      background: white;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-control {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
-      font-family: 'Montserrat', sans-serif;
-    }
-    
-    textarea.form-control {
-      min-height: 150px;
-      resize: vertical;
     }
     
     /* Footer */
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 3rem 0 2rem;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    
-    .footer-links h3 {
-      color: white;
-      margin-bottom: 1.5rem;
-    }
-    
-    .footer-links ul {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 0.8rem;
-    }
-    
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
-    }
-    
-    .copyright {
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 10;
       text-align: center;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .social-links a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary-light);
     }
     
     /* Responsive */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
-        background: transparent;
-        border: none;
-        color: var(--dark);
-        font-size: 1.5rem;
-        cursor: pointer;
       }
       
       .nav-links {
@@ -355,11 +388,12 @@
         top: 70px;
         left: 0;
         right: 0;
-        background: white;
+        background: rgba(18, 18, 18, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         flex-direction: column;
         align-items: center;
         padding: 1.5rem 0;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transform: translateY(-150%);
         transition: transform 0.3s ease;
       }
@@ -371,121 +405,123 @@
       .nav-links li {
         margin: 0.8rem 0;
       }
+      
+      .track-name {
+        font-size: 1.8rem;
+      }
+      
+      .player-controls {
+        gap: 1rem;
+      }
+      
+      .control-button {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .play-button {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .station-logo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 2rem;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <div class="container">
-      <nav class="navbar">
-        <div class="logo-text">Yarlin Producciones</div>
-        
-        <button class="menu-toggle" id="menu-toggle">
-          <i data-feather="menu"></i>
-        </button>
-        
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#radio">Radio</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav class="navbar">
+      <a href="#" class="logo-text">Yarlin Producciones</a>
+      
+      <button class="menu-toggle" id="menu-toggle">
+        <i data-feather="menu"></i>
+      </button>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#">Radio</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
   </header>
   
-  <!-- Hero Section -->
-  <section class="hero" id="inicio">
-    <div class="container">
-      <h1>Yarlin Producciones</h1>
-      <p>Transmitiendo la mejor música las 24 horas del día. Sintoniza ahora y sé parte de nuestra comunidad de oyentes.</p>
-      <a href="#radio" class="btn">Escuchar ahora</a>
-    </div>
-  </section>
-  
-  <!-- Player Section -->
-  <section class="player-section" id="radio">
-    <div class="container">
-      <div class="player-card">
-        <div class="music-player">
-          <div class="track-info">
-            <div class="track-name">Radio en Vivo</div>
-            <div class="track-artist">Yarlin Producciones</div>
-          </div>
-          
-          <div class="player-controls">
-            <button class="control-button" id="previous-button">
-              <i data-feather="skip-back"></i>
-            </button>
-            <button class="control-button play-button" id="play-button">
-              <i data-feather="play" id="play-icon"></i>
-            </button>
-            <button class="control-button" id="next-button">
-              <i data-feather="skip-forward"></i>
-            </button>
-          </div>
-          
-          <div class="volume-control">
-            <button class="control-button" id="mute-button">
-              <i data-feather="volume-2" id="volume-icon"></i>
-            </button>
-            <input type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider" id="volume-slider">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Contact Section -->
-  <section class="section" id="contacto">
-    <div class="container">
-      <div class="section-header">
-        <h2>Contacto</h2>
-        <p>Comunícate con nosotros</p>
+  <!-- Player Section - Fullscreen -->
+  <div class="container">
+    <section class="player-section" id="radio">
+      <!-- Background elements -->
+      <div class="background-visual"></div>
+      <div class="overlay-gradient"></div>
+      
+      <!-- Visualizer -->
+      <div class="visualizer">
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
+        <div class="visualizer-bar"></div>
       </div>
       
-      <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
-        <h3 style="margin-bottom: 1.5rem;">Información de Contacto</h3>
-        <p><strong>Dirección:</strong> Huarmaca, Piura, Perú</p>
-        <p><strong>Teléfono:</strong> +51 953 699 000</p>
-        <p><strong>Email:</strong> info@yarlinproducciones.com</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-links">
-          <h3>Yarlin Producciones</h3>
-          <p>Transmitiendo la mejor música desde 2015.</p>
-        </div>
-        
-        <div class="footer-links">
-          <h3>Enlaces</h3>
-          <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#radio">Radio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-links">
-          <h3>Contacto</h3>
-          <ul>
-            <li>Email: info@yarlinproducciones.com</li>
-            <li>Teléfono: +51 953 699 000</li>
-            <li>Dirección: Huarmaca, Piura, Perú</li>
-          </ul>
+      <!-- Player Content -->
+      <div class="player-content">
+        <div class="player-card">
+          <div class="music-player">
+            <div class="station-logo">
+              <div class="inner-logo">YP</div>
+            </div>
+            
+            <div class="track-info">
+              <div class="track-name">Radio en Vivo</div>
+              <div class="track-artist">Yarlin Producciones</div>
+              <div class="track-description">Transmitiendo la mejor música las 24 horas del día desde Huarmaca, Piura, Perú.</div>
+            </div>
+            
+            <div class="player-controls">
+              <button class="control-button" id="previous-button">
+                <i data-feather="skip-back"></i>
+              </button>
+              <button class="control-button play-button" id="play-button">
+                <i data-feather="play" id="play-icon"></i>
+              </button>
+              <button class="control-button" id="next-button">
+                <i data-feather="skip-forward"></i>
+              </button>
+            </div>
+            
+            <div class="volume-control">
+              <button class="control-button" id="mute-button">
+                <i data-feather="volume-2" id="volume-icon"></i>
+              </button>
+              <input type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider" id="volume-slider">
+            </div>
+            
+            <div class="now-playing">
+              Ahora sonando: <span>La Mejor Música</span>
+            </div>
+          </div>
         </div>
       </div>
       
-      <div class="copyright">
-        &copy; 2025 Yarlin Producciones. Todos los derechos reservados.
+      <!-- Footer -->
+      <div class="footer">
+        <div class="social-links">
+          <a href="#"><i data-feather="facebook"></i></a>
+          <a href="#"><i data-feather="instagram"></i></a>
+          <a href="#"><i data-feather="twitter"></i></a>
+          <a href="#"><i data-feather="phone"></i></a>
+        </div>
+        <div>&copy; 2025 Yarlin Producciones | Huarmaca, Piura, Perú | +51 953 699 000</div>
       </div>
-    </div>
-  </footer>
+    </section>
+  </div>
   
   <script>
     // Inicializar iconos
@@ -557,7 +593,27 @@
       feather.replace();
     });
     
-    // No hay formulario de contacto que procesar
+    // Animar visualizador (simulado)
+    const visualizerBars = document.querySelectorAll('.visualizer-bar');
+    
+    function animateVisualizer() {
+      visualizerBars.forEach(bar => {
+        const height = Math.floor(Math.random() * 100) + 20;
+        bar.style.height = `${height}px`;
+      });
+    }
+    
+    // Iniciar animación cuando se reproduce
+    playButton.addEventListener('click', function() {
+      if (isPlaying) {
+        visualizerInterval = setInterval(animateVisualizer, 100);
+      } else {
+        clearInterval(visualizerInterval);
+        visualizerBars.forEach(bar => {
+          bar.style.height = '20px';
+        });
+      }
+    });
   </script>
 </body>
 </html>
