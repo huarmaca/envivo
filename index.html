@@ -388,7 +388,6 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#radio">Radio</a></li>
-          <li><a href="#programas">Programas</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
@@ -437,63 +436,19 @@
     </div>
   </section>
   
-  <!-- Programs Section -->
-  <section class="section" id="programas">
-    <div class="container">
-      <div class="section-header">
-        <h2>Nuestros Programas</h2>
-        <p>Descubre la variedad de programas que tenemos para ti</p>
-      </div>
-      
-      <div class="program-grid">
-        <div class="program-card">
-          <span class="program-time">Lunes a Viernes • 7:00 - 10:00</span>
-          <h3 class="program-title">Mañanas con Yarlin</h3>
-          <p class="program-host">Con Mario Sánchez</p>
-          <p>Comienza tu día con la mejor música y las noticias más relevantes para despertar con energía.</p>
-        </div>
-        
-        <div class="program-card">
-          <span class="program-time">Lunes a Viernes • 12:00 - 15:00</span>
-          <h3 class="program-title">Ritmo Latino</h3>
-          <p class="program-host">Con Lucia Mendoza</p>
-          <p>Tres horas de los mejores ritmos latinos. Salsa, merengue, bachata y reggaetón para animar tu mediodía.</p>
-        </div>
-        
-        <div class="program-card">
-          <span class="program-time">Lunes a Viernes • 18:00 - 20:00</span>
-          <h3 class="program-title">Atardecer Musical</h3>
-          <p class="program-host">Con Roberto Torres</p>
-          <p>Un espacio de música relajante para acompañar el final de tu día.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
   <!-- Contact Section -->
   <section class="section" id="contacto">
     <div class="container">
       <div class="section-header">
         <h2>Contacto</h2>
-        <p>Envíanos tu mensaje o solicitud</p>
+        <p>Comunícate con nosotros</p>
       </div>
       
-      <div class="contact-form">
-        <form id="contact-form">
-          <div class="form-group">
-            <input type="text" class="form-control" id="name" placeholder="Nombre completo" required>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-control" id="email" placeholder="Correo electrónico" required>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="subject" placeholder="Asunto">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" id="message" placeholder="Mensaje" required></textarea>
-          </div>
-          <button type="submit" class="btn">Enviar mensaje</button>
-        </form>
+      <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+        <h3 style="margin-bottom: 1.5rem;">Información de Contacto</h3>
+        <p><strong>Dirección:</strong> Huarmaca, Piura, Perú</p>
+        <p><strong>Teléfono:</strong> +51 953 699 000</p>
+        <p><strong>Email:</strong> info@yarlinproducciones.com</p>
       </div>
     </div>
   </section>
@@ -512,7 +467,6 @@
           <ul>
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#radio">Radio</a></li>
-            <li><a href="#programas">Programas</a></li>
             <li><a href="#contacto">Contacto</a></li>
           </ul>
         </div>
@@ -521,8 +475,8 @@
           <h3>Contacto</h3>
           <ul>
             <li>Email: info@yarlinproducciones.com</li>
-            <li>Teléfono: +1 234 567 890</li>
-            <li>Dirección: Av. Principal #123</li>
+            <li>Teléfono: +51 953 699 000</li>
+            <li>Dirección: Huarmaca, Piura, Perú</li>
           </ul>
         </div>
       </div>
@@ -603,12 +557,7 @@
       feather.replace();
     });
     
-    // Formulario de contacto
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('¡Gracias por tu mensaje! Te responderemos pronto.');
-      this.reset();
-    });
+    // No hay formulario de contacto que procesar
   </script>
 </body>
 </html>
